@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include Head -->
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/partials.css">
+    <title>NEUROPECS - HOME</title>
+</head>
+<body>
+    <!--Incluyo el partial header-->
+    <%- include('./partials/header.ejs') %>
+    <section class="banner">
+        <div>
+            <!--<video src="/images/portada.jpg" alt="Banner principal">-->
+            <img src="/images/portadaNeuro2.jpg" alt="Banner principal">
+            <p> JUEGOS PARA ESTIMULAR EL LENGUAJE <br> Y LA LECTOESCRITURA EN NIÑOS </p>
+        </div>
+    </section>
+    <main>           
+        <!--<section class="offers">
+            <div>
+            <span>Ofertas</span>
+            </div>
+            <div class="products">
+                <% productsHk.forEach(product => { if(product.discount > 0){%>
+                    <article class="articulo">
+                        <a href="/productDetail/<%= product.id %>"><img src="/images/products/<%= product.Imagesproducts[0].nameImage %>" class="product_img"></a>
+                        <div class="detalle">
+                            <div class="price-and-discount">
+                                <p class="price">$<%= product.price %></p>
+                                <p class="discount"><%= product.discount*100 + '% OFF' %></p>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                                <div>
+                                    <h4 class="name"><%= product.name %></h4>
+                                    <h4 class="category"><%= product.Category.nameCategory %></h4>
+                                </div>
+                        </div>
+                    </article>
+                <%}}) %>
+            </div> -->          
+        </section>
+        <section class="last-visit">
+            <div>
+            <!--<span>Catalogo</span>-->
+            </div>
+            <div class="products">
+                <% productsHk.forEach(product => {%>
+                    
+                    <article class="articulo">
+                        <a href="/productDetail/<%= product.id %>"><img src="images/products/<%= product.Imagesproducts[0].nameImage %>" class="product_img"></a>
+                        <div class="detalle">
+                            <div class="price-and-discount">
+                                <p class="price">$<%= product.price %></p>
+                                <% if(product.discount > 0){%>
+                                <p class="discount"><%= product.discount*100 + '% OFF' %></p>
+                                <%}%>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                                <div>
+                                    <h4 class="name"><%= product.name %></h4>
+                                    <h4 class="category"><%= product.Category.nameCategory %></h4>
+                                </div>
+                        </div>
+                    </article>
+                <%}) %>
+            </div>
+                  
+        </section>
+    </main>
+        <%- include('./partials/footer.ejs') %>
+</body>
+</html>

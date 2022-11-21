@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<link rel="stylesheet" href="/css/partials.css">
+<link rel="stylesheet" href="/css/register.css">
+<%- include('partials/head', {title: 'Formulario de creación'}) %>
+<body>
+	<!-- Header -->
+	<%- include('partials/header') %>
+	<!-- /Header -->
+<main>
+	<br><br>
+	<div class="form-container">
+		<h2 class="register-title">Formulario de creación de productos</h2>
+			<!-- el enctype es fundamental para Multer-->
+			<form class="register-form" action="/products" method="POST" enctype="multipart/form-data" id="productCreate-form">				
+					<div class="form-div">
+						<label for="name" class="form-label">Nombre del producto:</label>
+						<input type="text" id="name" name="name" 
+						placeholder="Ej: Loteria 1era edicion"
+						value= "<%= locals.oldData ? oldData.name : null %>"
+						class="form-input">
+					</div>
+					<div class="errorValidacion" id="nameError"></div>
+					<br><% if (locals.errors && errors.name) { %>
+						<div class="errorValidacion">
+							<p><%= errors.name.msg %></p>
+						</div> 
+					<% } %>
+					<div class="form-div">
+						<label for="categoryId" class="form-label">Categoria:</label>
+						<select name="categoryId" id="">
+							<% categories.forEach(category => { %>
+							 <option value="<%= category.id %>"><%= category.nameCategory %> </option>
+							<% }) %>
+						</select>
+						<!--<input type="text" id="bodegasId" name="bodegasId" 
+						placeholder="Ej: Etchart" value= "<%= //locals.oldData ? oldData.bodega : null %>
+						"class="form-input">-->
+					</div>
+					<br><% if (locals.errors && errors.category) { %>
+						<div class="errorValidacion">
+							<p><%= errors.category.msg %></p>
+						</div> 
+						<% } %>
+					<div class="form-div">
+						<label for="price" class="form-label">Precio del producto:</label>
+						<input type="number" id="price" name="price" placeholder="Ej: 1000" 
+						value= "<%= locals.oldData ? oldData.price : null %>" 
+						class="form-input">
+					</div>
+					<br><% if (locals.errors && errors.price) { %>
+						<div class="errorValidacion">
+							<p><%= errors.price.msg %></p>
+						</div> 
+					<% } %>
+					<div class="form-div">
+						<label for="discount" class="form-label">Descuento:</label>
+						<input 
+						type="number" id="discount" 
+						name="discount" min="0" max="1" step="0.01" 
+						placeholder="Ej: 15" class="form-input"
+						value="<%= locals.oldData ? oldData.discount : null  %>" >
+					</div>
+						<% if (locals.errors && errors.discount) { %>
+							<div class="errorValidacion">
+								<p><%= errors.discount.msg %></p>
+							</div> 
+						<% } %>
+					
+					<div class="form-div">
+						<label for="image" class="form-label">Foto:</label>
+						<input type="file" id="image" accept=".png, .jpeg, .jpg" 
+						name="image" placeholder="Ingrese una foto"  multiple  class="form-input"
+						value="<%= locals.oldData ? oldData.image : null  %>">
+					</div>
+					<div class="errorValidacion" id="imageError"></div>
+					<% if (locals.errors && errors.image) { %>
+						<div class="errorValidacion">
+							<p><%= errors.image.msg %></p>
+						</div> 
+					<% } %>					
+					<div class="form-div">
+						<label for="description" class="form-label">Descripción:</label>
+						<textarea name="description" id="description"  class="form-input"><%= locals.oldData ? oldData.description : null %></textarea>
+					</div>
+					<div class="errorValidacion" id="descriptionError"></div>
+					<% if (locals.errors && errors.description) { %>
+					<div class="errorValidacion">
+						<p><%= errors.description.msg %></p>
+					</div> 
+					<% } %>
+					<div class="form-buttons">
+						<button type="submit">Guardar producto</button>
+						<button type="reset" class="reset-button">Limpiar</button>
+					</div>
+			</form>
+			<br><br><br>
+	</div>
+	<br>
+	<br>
+        <br>
+</main>
+	<!-- /todos los productos -->
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+	<script src="/js/productCreateValidation.js"></script>
+</body>	
+</html>

@@ -1,0 +1,50 @@
+<section class="last-visit">
+    <h3><%= product.category %></h3>
+    <div class="products">
+        
+        <article>
+            <div class="imagen">
+                <img class="zoom"src="/images/products/<%= product.Imagesproducts[0].nameImage %> " class="product_img" alt="neuropecs">
+            </div>
+            <div class="main-article">
+                 <div class="description1">
+                    <p class="textarea"><%= product.description %> </p>
+                </div>
+            </div>
+            
+        </article>
+        <article>
+        <div class="tipo-vino">
+            <div class="tipo-vino1">
+               <ul class="lista-vino">
+                <li class="detalle-lista"><%= product.name %></li>
+                <li class="detalle-lista"><%= product.Category.nameCategory %></li>
+               </ul>
+            </div>
+        </div>
+        </article>
+        <article>
+            <div class="caja-carrito">
+                <div class="precio-descuento">
+                    <p class="precio">$ <%= product.price %></p>
+                    <% if(product.discount > 0){%>
+                        <p class="descuento"><%= product.discount*100 + '% OFF' %></p>
+                        <%}%>
+                </div><br><br>
+                <div class="carrito">
+                    
+                    <label class="cantidad">Cantidad:</label>
+                    <select class="cantidad1">
+                        <option value="1"> 1</option>
+                        <option value="2"> 2 unidades</option>
+                        <option value="3"> 3 unidades</option>
+                        <option value="4"> 4 unidades</option>
+                    </select>
+                    <button class="comprar"type="submit"><i class="fas fa-shopping-basket"></i>Comprar</button>
+                </div><br>
+                </div>
+            </article>
+          
+    </div>  
+            
+</section>
